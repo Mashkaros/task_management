@@ -1,6 +1,6 @@
 import { TaskStatus } from "dist/tasks/task.model";
 
-export class GetTaskStatus {
+export class GetTaskFilterDto {
     status: TaskStatus;
     search: string;
 }
