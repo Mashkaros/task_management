@@ -8,13 +8,14 @@ import { ConflictException, InternalServerErrorException } from "@nestjs/common"
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
+
     async signUp(authCredentialsDto: AuthCredentialsDto): Promise<messageResponse> {
         const { username, password } = authCredentialsDto;
         const user = new User();
         user.username = username;
         user.salt = await bcrypt.genSalt();
         user.password = await this.hashPassword(password, user.salt);
-        console.log(user.password);
+
         try {
             await user.save();
         } catch (error) {
@@ -30,6 +31,7 @@ export class UserRepository extends Repository<User> {
             message: `User ${username} was successfully created`,
         }
     };
+
     async validateUserPassword(authCredentialsDto: AuthCredentialsDto): Promise<string> {
         const { username, password } = authCredentialsDto;
         const user = await this.findOne({ username });
