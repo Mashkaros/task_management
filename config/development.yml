@@ -1,0 +1,9 @@
+db:
+  host: 'localhost'
+  username: 'ulia'
+  password: '123'
+  database: 'taskmanagement'
+  synchronize: true
+
+jwt:
+  secret: 'verySecretSecret'
